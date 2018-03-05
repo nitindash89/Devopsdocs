@@ -1,0 +1,210 @@
+By default terminal program put you in your's Home directory
+git version
+git config --global user.name "dashn89"
+git config --global user.email "dashn89@gmail.com"
+git config --global --list (to confirm username and email add)
+
+cloning:want to get copy of this repo onto my local system
+git clone url (git will now go out of github and make full copy
+               of our repo in Github to our local system)
+
+git will auto create a directory named after our repo which can 
+confirmed by ls
+         
+git status (tell I am on master branch, master branch is default branch)
+ it also tells master is upto-date with origin/master
+
+working directory is where we do all our works and git monitors 
+changes
+
+an untracked file is the file in our working directory that hasn't
+been added to Git yet.
+
+git add <filename> ( add file)
+After git add, file is in staging area and waiting for commit.
+
+git status showing changes to be committed, now in git staging area
+
+git commit -m "commit message"(now a new file has been moved 
+                            from staging area into the local repo.
+
+After commit new file is still local as commit is still a local 
+command which means that our file is not yet on github.
+
+git push origin master( origin refers to the Github copy of our repo)
+      this verison of git push command specifies the remote name
+      which is origin which was setup for us auto when we clone
+      the repo from github.
+ and the name of the branch to push,which is master(it refers to our
+ default and only branch in the repo).
+
+git init <projectname> (create a new fresh repo)
+
+After doing so git created a folder in the name of project.
+check by ls
+
+cd <projectname>
+
+.git folder: actually where the git repo lives
+I am in working folder now
+
+cd .git
+ls
+
+cd ..
+
+create a file
+
+git status(git remind us we are in the master branch and we are building
+  up our Intial commit.
+To have git tracked this file we add that file to the Git Index
+or to Git staging 
+
+git rm --cached <file> ( to unstage the file) when in staging area
+
+rm -rf<file name> (delete that project for me)
+
+unzip <path> ~/downloads/then name of zip file
+ ~ user's home dir
+
+git add .( to add multiple files or all files )
+
+working directory clean means this working directory is part of 
+git repo or being managed by git repo which is maintained by .git
+folder.if .git folder is no longer there then this project is not
+managed by git.
+
+rm -rf .git( deleted .git folder which means we remove all traces
+   of git managing this folder.
+
+fork:create a copy of repo in our personal space
+now repo shows my personal id/repo name
+now we have to clone repo to our system
+git clone url
+
+files which are not tracked are in working directory
+after git add its in staging area and being tracked
+then we go for git commit , when we do commit everything in
+staging area is commited.
+
+git commit command returns master which is the current branch
+that its commits on and then this weired text ba5b0f0 and so on.
+That's the SHA-1 which is unique identifier for the commit followed
+by commit message.commit command is local did not affect our remote
+repo.
+
+Next line tells we have 1 file changed which resulted in 1 insertion
+last line tells us which file actually got changed.
+
+git status command keeps track of origin/master which is our 
+reference back to our remote repo in Github.
+
+git pull origin master: this update our repo with any changes that
+    may have happened on our remote repo.
+git push origin master:push any commit from local repo to remote 
+    repo by reference name and as well the branch you want to push
+
+origin is the name of remote repo that we clone from
+its just the naming convention.
+master which is our master branch
+master --> master : local master to remote master
+
+
+git commit -am "message"
+
+tracked file is any file that git is aware and tracking actively
+any file that already been commited to git repo or any file that
+has been added to git index or the git stagging area
+
+git ls-files( give list of all files that git is tracking in current
+                repo)
+  
+
+even within the same file git can track the diff b/w changes that 
+are to be commited ,that are staged and changes that have not been
+staged yet.
+
+mkdir -p level1/level2/level3/level5
+
+git add . (it will all the file recursivly like level1/level2.....)
+
+
+===============
+Let say I decide I really do n't need changes
+
+working Dir  staging area  .gitrepo    remoterepo
+
+file is in staging area and to backout changes user below cmd
+git reset HEAD <filename>
+
+Now I think I do not need any of these changes and want to go for
+last commit then cmd will git checkout --<file name>
+
+=================
+git mv <current file name> <new filename> (renaming the file on OS level)
+ 
+always rename the file before you make some changes,its makes easily
+
+renaming the file on os level without using git (mv current file new file
+
+mv <flename> <new file name>(I do git status and git see this as 2 operation
+           as I deleted the old file and added new file)
+git add -a(recursivly add the file)
+
+git mv level2.txt 2.txt
+
+git mv <new filename> <oldfile name>(cmd to get back oldfile from new filename)
+
+git mv level2.txt level3(moved file one level up)
+
+=====================
+git rm <file name>( git will not remove the file as its not tracking it)
+
+rm filename( it will remove the file if it is not tracked)
+
+git ls-files(shows all tracked file)
+
+git rm filename(removed tracked file)
+
+
+how to back out staged deletion
+git rm filename (deletion is currently staged not deleted permanently)
+git reset HEAD filename(just unstaging file)
+git checkout --filename(restore back what ever changes we made)
+
+
+what happen if you delete the file and you do n't want git to do deletion
+rm filename(bash cmd rm)
+
+i want to remove 
+
+rm -rf filename
+-r will recursively walk the folder structure
+-f force the deletion
+
+========================
+History
+
+git help log(help for specific cmd)
+git log
+
+-git help 
+
+-git help log
+
+-git help topic ( like commit)
+-git log --author="Nitin" ( to see  commit from particular person)
+--git log ae6f872...78524d44(shows only those commits iam interested in)
+--git log --since="3 days ago"(Date based searching)
+--git log --hipster.txt(file name) to check the log of particular file
+--git log --follow --level1/level2/level3(specified path)(follow rename of files)
+--git show paste commit id(dhgakldjhj46anajn)( show information about specific commit)
+--git log --abbrev-commit( will get the abbrevated commmit line shortned)
+--git log --oneline --graph --decorate( will compress into line,--graph will
+provide and ascii graph,depecting the branching graph, --decorate will add any
+level or tags)
+
+
+
+
+ 

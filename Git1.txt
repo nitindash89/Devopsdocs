@@ -1,0 +1,765 @@
+
+
+
+
+
+
+-Pwd (present directory) 
+
+
+
+
+-cd .git (trying to check what is my head pointing out to ? which checksum)
+
+-cat head (o/p will be refs : refs/heads/master)
+
+-cd refs 
+
+-cd heads
+
+-cat master (this will return the checksum)
+
+
+permanent commit in repositary -m is like 
+
+giving some message 
+
+so what ever new files will get committed
+
+-git log --online -4
+
+-git log -n 1 (limit the number of limits)
+
+-git log -n 2 (limit the number of limits)
+
+-git log -n 0 (limit the number of limits)
+
+-git log --author="kevin"  (look commits with author)
+
+-git log --grep="Init" (search for particular text while 
+
+commiting , so this is message commit text which we are
+
+searching using grep)
+
+-git status (branch we are working on , and it says clean if there are not changes )
+
+
+-git add second_file.txt
+
+-git add first_file.txt
+
+-git add . (will add all files that needs to be moved to staging)
+
+if we manually delete file from our system, we need to check
+
+manually in our system , please refer to screenshots 33 ,34
+
+we need to tell the same to GIT 
+
+-git rm file_to_delete1.txt (telling GIT that i've removed file)
+
+-git commit -m "deleted the file " (telling GIT in staging)
+
+-git status (says clean , no changes (since we deleted from GIT perspective also)
+
+one more easier way is as follows
+
+-git rm file_to_delete2.txt (deletes permanently)
+
+-git status (deleted)
+
+-git commit -m "removed second file"
+
+similarly for rename and move (refer 37 , 38 where we renamed manually)
+
+But here GIT thinks file has been deleted and new file has been added
+
+That is how GIT understands . 
+
+check with git status (we will get the sames)
+
+
+-git add file_to_delele5
+
+-git rm file_to_delete4 (removes 4 and adds 5 )
+
+-git status (shows that file has been renamed)
+
+
+-git mv second_file.txt secondary_file
+
+-git status
+
+-git mv third_file.txt first_directory/third_file.txt
+
+the above command will move the file to the particular directory structure
+
+always "-" symbol says something has been removed and "+" symbol says
+
+something has been added . when we say git status 
+
+-git checkout -- index.html
+
+how to unstage (for staged files , Please find below  )
+
+-git reset HEAD resources.html.
+
+ 
+-git commit -- amend -m "rearrange"  (this will undo last commit (the one which is a HEAD) )
+
+-git dif --staged (show whats recent change been staged)
+
+
+-git reset --soft 3gs2 (please refer 43 for complete details ,45 for soft 
+check log for more details , check with diff -staged if the recent
+changes exist or not )
+
+-git reset --mixed 3gs2 (please refer 43 for complete details ,46 for mixed
+check log for more details , check with diff -staged if the recent
+changes exist or not)
+
+-git reset --hard 3gs2 (please refer 43 for complete details ,46 for mixed
+check log for more details , check with diff -staged if the recent
+changes exist or not)
+
+https://davidzych.com/difference-between-git-reset-soft-mixed-and-hard/
+
+please refer the above for better understanding
+
+project/.gitignore is used to ignore few files
+
+there are some files which need not to be bothered
+
+in order to add the ignore list . (refer 50) 
+
+go to CUI : nano .gitignore
+
+finally add .gitignore to staging and commit it
+
+Cleaning junk files 
+
+-git clean -n 
+
+-git clean -f (forces to run and delete
+
+all files which are not in staging directory)
+
+but if you file add to staging (that file cannot be cleaned)	
+
+so we need to reset , if we pushed the file to staging
+
+-git reset HEAD junk1.txt
+
+-git status 
+
+-git clean - n (folders)
+
+-git clean -f (this will force to remove all unstaged files ,be careful)
+
+-git will not remove any files which are in
+
+staging directory , we will need to reset them
+
+back to the working directory so you can delete them
+
+-git global ignore (as follows)
+
+-git sample/.gitkeep (by default GIT cannot recognize the folder 
+
+incase of any eventuality we can ask GIT to keep those directories 
+
+that is where we can use .gitkeep (where you put this file will make
+))
+
+-git branch (this is the current branch)
+
+-cat .git/HEAD (will return current branch)
+
+-ls .git/refs/heads (lists of the branches)
+
+-git log --oneline
+
+-git branch new_feature (new branch)
+
+-git branch (will point to current branch and show new branch created))
+
+-cat .git/refs/heads/new_feature (shows checksum of this branch)
+
+-cat .git/head (points head current branch)
+
+-git checkout new_feature (this will point to newly created branch)
+
+-git commit - am "your message" (commits all files)
+
+-git show head (will show the change)
+
+-git checkout -b rufix (creating and switching to thebranch)
+
+the above means , it makes working directory and create a nw branch
+
+check -- file (means checkout only file )
+
+-git log--graph --oneline --decorate --all
+
+(this will show all the commits with respect to the
+
+Branches)
+
+checkout (it exactly makes our working directory
+
+to sync with repository , work directory should be clean 
+
+which means all uncommmited codes should be commited before 
+
+switching the branches)
+
+if we are not staging ,for a file and you give following command
+
+-git checkout master
+
+( the above command will give you an error that following files 
+
+would be overwritten , it says please commit your changes or stash
+
+Them before you can switch branches ,get rid of conflicts before 
+
+switching branch)
+
+Compare the branches-we can compare the branches as following 
+
+-git diff master..new_features(two branches separated by ".." range).
+
+-git branch --merged (shows all branches if they 
+
+have the changes or not! )
+
+-git branch -m new_feature seo_little (this will change the branch name)
+
+
+-git branch -d branchname (this will delete the branch)
+
+while you are on the same branch you cannot delete
+
+if you commit code on a branch and if you want to delete the branch
+
+you need to give 
+
+-git branch -d branchname
+
+(MERGING WITH MAIN BRANCH) refer 57 graph , navigate to the branch where 
+
+you want the changes to be received from giver 
+
+"receiver always" to be navigated first 
+
+git merge seo_little (this will return that updating , fast forward)
+
+FAST FORWARD- means it directly attached the other branch 
+
+with this branch without any commit. 
+
+git merge -no-ff branch (this will do a merge commit to document
+
+that you made some commmit , proof)
+
+git merge --ff-only branch (only do a ff merge if you cant do
+
+ff then simply abort).
+
+non fast forward merge (TRUE MERGE)
+
+for true merge , there will be a commit while merging also 
+
+thats the only difference (GIt is intelligent enough to understand)
+
+merge conflicts (if same file is changed in two branches then 
+
+GIT doesn't understand which one to take , so manually resovle the 
+
+conflicts)
+
+
+-git log --graph --oneline --all --decorate (will decorate nicely and
+
+show commits)
+
+
+
+stash (4th area in GIT , apart from working ir , staging and repository)
+
+there is no SHA for stash , temporary files
+
+let's understand the use case 
+
+lets say if you commited something in little_branch
+
+and you're switching to master branch without 
+
+committing the changed file , it will not 
+
+allow you to do ,because the file is different in both the branches
+
+so in this case stash can be used.
+
+-git stash save "changed mission title"
+
+this will create a swap out (points head to this)
+
+-git stash list (will give lists of stash list)
+
+stash is always irrespective of the branches 
+
+it is accessible anywhere . 
+
+try switching branches and use stash
+
+-git stash show stash@{0} (used for info)
+
+-git stash show -p stash@{0}
+
+-git stash pop (this will bring in the working directory)
+
+but will remove from stash 
+
+-git stash apply (this will bring into working directory 
+
+but also saved in stash) 
+
+we can also store multiple stash 
+
+for 3rd stash will be like stash@{2}
+
+lets try with git stash pop
+
+-git stash pop stash@{0}
+
+git stash list (this will not list any stash as we
+
+deleted )
+
+git stash save "change to mission page title"
+
+git checkout shorten_title 
+
+git status (working directory clean)
+
+git stash apply 
+
+git stash list (this time it will not delete stash)
+
+git stash drop stash@{0} will simply delete
+ 
+git remote -v (what we have in remote repo and gives push and fetch)
+
+git remote will give simply the name 
+
+cat .git/config (will give the repo details like remote origin)
+
+git  remote rm origin
+
+git push - u origin master (push branch to repo)
+
+
+after the above go to cat .git/config 
+
+will give details about the branch definition
+
+ls -la .git/refs/remotes/origin
+
+cat .git/refs/remotes/origin/master (will refer to SHA)
+
+git branch -r (shows remote branches)
+
+git branch -a (shows all branches)
+
+to get repo on local (as follows)
+
+git clone https://github.com/sprathivadibhaya/sample.git myversion
+
+so my version is the folder where the repo copy will copied in my local
+
+in repo (server) always master is default ,
+
+if you want particular branch select by using branch -b 
+
+if you want to fetch from remote to my local (to make sync) as follows
+
+-git fetch (if we created a new branch , unless we use this command
+
+git cannot realise that there is a new branch created on remote)
+
+git log --oneline -5 origin/master (same commits)
+
+pull = fetch + merge (both will be done simultaneously)
+
+remote checkouts 
+
+git checkout -b non-tracking origin/non_tracking
+
+(the above will get us a local branch non_tracking from remote 
+
+ so what we commit in non_tracking by default will get synched
+
+with remote/nontracking when we use the push command )
+
+git push origin non_tracking:non_tracking
+                       |         |
+                      \ /       \ /   
+                     local      remote 
+
+to delete a remote branch 
+
+git push origin --delete non_tracking 
+
+fork - for getting write access
+
+
+git config core.autocrlf false - we are ignoring the warnings 
+         
+Showing error message: LF will be replaced by CRLF in Gemfile.
+=====================: https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
+git config core.autocrlf true  
+
+            
+
+to create file
+==============
+echo "Test git quick start demo"(contents in file) >> start.txt(file name)
+
+to clone respository
+====================
+git clone https://github.com/nitindash89/github-test.git
+it make a full copy of our repository on git hub to our local system
+This will automatically create a directory name in our repository
+confirm by typing  -Ls cmd
+
+== to set up username and email address
+git config --global user.email "srikanth.prathivadi@gmail.com" 
+git config --global user.name "srikanth pb"
+
+== to check email
+git config user.email
+git config --global --list
+
+==to check all settings
+git config --list
+
+==for help
+-git help 
+
+-git help log
+
+-git help topic ( like commit)
+-git log --author="Nitin" ( to see  commit from particular person)
+--git log ae6f872...78524d44(shows only those commits iam interested in)
+--git log --since="3 days ago"(Date based searching)
+--git log --hipster.txt(file name) to check the log of particular file
+--git log --follow --level1/level2/level3(specified path)(follow rename of files)
+--git show paste commit id(dhgakldjhj46anajn)( show information about specific commit)
+--git log --abbrev-commit( will get the abbrevated commmit line shortned)
+--git log --oneline --graph --decorate( will compress into line,--graph will
+provide and ascii graph,depecting the branching graph, --decorate will add any
+level or tags
+
+== git basics
+-pwd - present working directory
+-cd .. = to go back one folder
+-git init (go to directory and say init so git this is your repositary )
+-ls-l to list all the files and folders
+ 
+==to check hidden files
+ls -la
+
+== means add all the files in 
+git add .
+ 
+working copy>staging area>repository
+
+== to see difference in working copy and modified copy
+git diff
+
+==================
+git diff --staged
+
+
+===========================================
+origin refer to git hub copy of repository
+master refer to default and  only master in the repository or master branch
+
+git push origin master
+
+git commit - m "initial commit" (m stands for message)
+
+===========================================
+--rm -rf (folder name)fresh-project
+
+============================================
+to unzip
+unzip ~/downloads/initializr-verekia-4.0.zip (Path with file name)
+============================================
+[master 97afd68] :: SHA1 Unique identifier for commit
+
+===============================================
+
+Adding and commiting @ one go or single cmd
+
+git commit -am "Adding more ipsum text"
+
+a -> add
+m-> Message
+==============================================
+
+git pull origin master : to make repository up-to-date
+
+Always doing a pull before doing push
+
+===============================================
+Tracked file is any file that Git is aware of abd tracking actively
+that would be any file that has already been committed into the Git repository
+or any file that has been added to Git Index or Git stagging area
+
+git ls-files ( to find tracked file)
+
+===============================================
+Create multiple folder
+
+mkdir -p level1/level2/level3/level4
+
+=================================================
+To add all file or subfolder at one go
+
+git add .
+
+==========================================================================
+To get the file back to unstage and to discard changes in working directory
+
+git reset HEAD level1-file.txt(file name)
+
+git checkout -- Level1-file.txt
+
+============================================================================
+Renaming file
+
+git mv Level3-file.txt(file name) Level3.txt(New file name)
+
+if you are using bash cmd to rename the file in git without using git cmd then
+when you see git status it will show older file as deleted and new file with new name
+for this we use to git add -a ( will add any and also update any file that rename 
+moved or deleted.
+
+backing out same file name
+
+git mv Level3.txt Level3-file.txt
+
+
+Moving file from Level2 folder to level3
+
+git mv Level2.txt level3
+
+backing up from level3 to level2
+ In level3 ->mv level2.txt ..
+
+.DS store file is an OS level file that I just do n't want to be tracked
+in my repository so add Individually
+
+git add -u to make sure Git understands that we renamed the file
+
+==================================================================
+Deleting files
+ 
+git rm doomed.txt(file name)
+fatal: pathspec 'doomed.txt' did not match any files
+Error as git can not delete the untracked file so we simply use OS facilities for
+deleting the files directly
+In This case we will use bash cmd "rm" and then the file name
+rm doomed.txt
+
+git ls-files : cmd to check files git is tracking)
+
+git rm robots.txt(file name)-- to delete tracked file
+
+git reset HEAD hipster.txt -- to unstage the file means to get the deleted file 
+but it never restores the deletion.when we go for git status we confirm that git is detecting that there is a deleted file
+hipster.txt, is currently being tracked but missing from working directory
+Then we use "git checkout -- hipster.txt"
+
+Delete a file that Git is tracking but you do not use git to do the deletion
+
+rm hipster.txt(file name)
+
+git status shows hipster.txt is missing from working directory
+beacuse of that it's placing that change in the 'not stagged for commit'
+
+git add -A which add and update any change in working directory
+
+Deletion without git intial knowledge
+
+to delete entire folder structure like level1/level2/level3/level4/
+
+rm -rf level1
+-r recursively walk the foler structure and -f will force the deletion
+=======================================================================
+how to setup Alias
+
+Git has the ability to basically create extra commands that work alongside with Git.
+
+ git config --global alias.hist ("log --all --graph --decorate --oneline")
+bracket one is the long cmd so use git config --global alias.hist with long cmd
+to create ur own.then the exact result that you got from 
+git log --all --graph --decorate --oneline"
+
+will be the same result from== git hist
+
+alias file in .git /config file
+==============================================================================
+
+Avoid unwanted files
+
+.ds_store is mac level os file
+
+git have .gitignore files for ignore untracked files that we do not want to add
+let create it
+
+.gitignore file expression will be
+specific file:MyFile.ext 
+Path:*.ext 
+Folder:my-folder/
+================================================================================
+Now we will focus on branching ,comparing and merging
+
+P4 merge for windows
+
+Setting p4merge for windows
+
+git config --global merge.tool p4merge(configuring git to use P4merge as diff tool
+and as merge resolution tool) because these setting need to be at the global or userlevel
+followed by the setting to use which is "merge.tool" then the name of the tool that we
+want to give which is p4merge.
+
+git config --global mergetool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+ (the cmd tells git where to look for p4merge tool)
+
+git config --global diff.tool p4merge(similar to mergetool diff have same)
+
+git config --global difftool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+
+git config --global difftool.prompt false
+
+git config --global mergetool.prompt false(the cmd will tell git to not to prompt whether
+or not to launch p4merge everytime we need to resolve a conflict)
+===================================================================================
+Comparisons the setup
+
+.md ext: means markdown extension
+
+git difftool (that help to see difference in file through diff tool(p4merge) we installed(working directory vs what has been staged)
+git diff HEAD(it compares the diff b/w working directory and last commit)
+git difftool HEAD(it compares the diff b/w working directory and last commit(git respository at HEAD) by difftool)
+
+Comparing Stagged area to Git repository or HEAD( means last commit on current branch)
+--------------------------------------------------------------------------------------
+git diff --staged HEAD
+
+git difftool --staged HEAD
+
+Comparing Limit to one file
+---------------------------
+we are going to limit the diff to just readmefile
+git diff -- README.md(file path or file name)
+
+git difftool -- README.md
+------------------------------
+Comparisons b/w commits
+
+Let us compare an arbitary commit to last commit
+
+git log --online (History that happens so far)
+
+git diff 4fdf4d4(arbitary points or commit id)) HEAD ( that show diff b/e
+
+git diff HEAD HEAD^(This compares head  and head -1)
+
+git difftool HEAD HEAD^(we can also see this visually in diff tool git commit @head and 
+git commit prior to 1 head)
+
+git diff commitid 1 commitid 2( to see the diff of both the commit)
+
+git difftool commitid 1 commitid 2( to see it visually and use cmd to move from one file to another to see diff)
+==================================================================
+Comparisons b/w local and remote branch
+
+git diff master origin/master( origin is the name of remote reference and 
+                               /master is the just the master branch on the git repository on github)
+=======================================================================
+comparsion section clean up
+
+git status
+
+git add filesname
+
+git commit -m "comments"
+
+git pull
+
+git push origin master
+=========================================================================
+Branching Basics
+
+till now we are doing all changes in master that not the best practices
+we should seperate our changes in branches that makes sense
+we should atleast creating feature branches or topic branches to isolate out chnages
+and then integrate them back into our master branch
+one those features or topics have been stablized, so to work with branches.
+
+git branch -a (It represent both local and remote branches)
+
+To create new branch
+git branch mynewbranch(Branch name)
+
+to exit from master branch and create new one
+git checkout mynewbranch
+
+first commit that we have listed ,which is our last commit
+We have HEAD which usually points to last commit on current branch
+HEAD and origin/head are simply pointers on their branches,both local and then remote
+Branches are just labels and there is nothing special, just pointers
+
+to back to master branch
+git checkout master
+
+
+to rename branch
+git branch -m mynewbranch newbranch
+
+to delete branch
+git branch -d newbranch ( you cann't delete the branch you are on so you have to move to 
+ other branch to delete that one.
+
+=============================
+Happy path/fast forward merge
+
+git branch ( to check which branch you are)
+
+git branch -a(to list all of our local branches)
+
+to merge 2 changes
+git merge title-change 
+
+=====================
+Happy path w/o fast forward
+
+to disable fastforward
+git merge add-copyright --no--ff
+
+================
+Automatic merge
+
+git merge simple-changes -m "Merging changes from simple-changes"
+
+
+
+
+
+
+

@@ -1,0 +1,260 @@
+add user srikanth (linux specific command )
+the above is os specific , this is a blocker 
+
+cannot execute for other os 
+
+rather i can use following by puppet
+
+user 
+{
+  name => 'srikanth',
+  group => 'srikanth',
+
+}
+
+windows 
+
+https://downloads.puppetlabs.com/windows/
+
+puppet - windows . 
+
+
+
+
+
+puppet resource --types | more
+
+
+modules come from init.pp 
+
+it applies resources in which they are declared  
+
+explicit relations 
+
+1) notify => (meta parameter)
+
+   notify the next execution , for example 
+
+if   os family debian 
+
+notify => exec (install ) ( when we wanted to notify the subsequent task to take over the control from this point)
+
+
+  exec ( install => tomcat.exe)
+
+the above means if it is a debian os it comes inside if loop
+
+and if it is successful notify the subsequent task to take over
+
+
+2) chained arrow ->
+
+3) requires ( ex tomcat requires java)
+
+
+
+package { 'openssh-server': -1
+ensure ==>present,-2
+before => file ['/etc/ssh/sshd_Config'],
+}
+
+File { '/etc/ssh/sshd_Config':
+ensure => file,
+mode => '0600'
+source =>
+'puppet://modules/sshd/sshd_config',
+require => Package ['openssh-server'],
+}
+the above says for modifying sshd_Config 
+file u need openssh-server ( thats why we have require =>)
+
+similarly 
+
+File {' /etc/ssh/sshd_config':
+ensure => file,
+mode => '0600',
+source =>
+'puppet://modules/sshd/sshd_config',
+notify => service ['sshd],
+
+service {'sshd':
+ensure => running,
+enable =>true
+subscribe =>
+File ['etc/ssh/sshd_config']
+}
+
+the above command says once we modify file 
+
+notify the service sshd to restart ( irrespective if it is 
+
+started or stopped )
+
+lly , subscribe means any modification on sshd_config 
+
+we will need to restart , subscription :) 
+
+"notify" means if I change that should also change 
+
+"subscribe" means if that changes , I should also change 
+
+
+we can give multiple tasks for these 
+
+for example 
+
+  require => [ Exec['extracttomcat'], User['tomcat'] ] ,
+
+
+the above require says , tomcat should be extracted and 
+
+the user tomcat should be present 
+
+types of chaining (Arrows , -> and ~>)
+
+class {'java'} -> class {'tomcat'}
+
+the above says for left resource is done first before 
+
+the right resource ( like dependency)
+
+
+where as class {'java'} ~> {'tomcat'}
+
+this means , if java version changes change tomcat as well
+
+because logically ,java 7 work well with tomcat 7 
+
+java 8 requires latest tomcat 
+
+combinations example 
+
+java 8 ->tomcat 7
+
+java8 will install 
+
+tomcat remains same 
+
+java 8 ~> tomcat 7
+
+java 8 will install 
+
+tomcat7 will restart 
+
+java 8 ~> tomcat 8
+
+will skip java 8 (since 
+
+we already installed previous step)
+
+tomcat 8 will be installed 
+
+and start the tomcat 8 service)
+
+a->b (also called as refresh)
+
+class wordpress
+
+require => apache 
+
+require => mysql
+
+variables
+
+$_=10  integer
+$__='A',  character
+$name='Sri'  string 
+
+arrays
+
+hash
+
+scope
+
+facts 
+
+facts are system level variables
+
+so facter runs in background
+
+type facter to get the same 
+
+
+
+ex : hostname 
+
+
+you cannot assign same
+
+variable different values  
+
+different types of data types
+
+service { 'sshd'
+
+ensure => running,
+}
+
+ generating module
+
+puppet module generate srikanth
+
+puppet module list 
+
+we can change 
+
+vi metadata.json 
+
+pupet module search java
+
+puppet module search puppetlabs-java
+
+puppet module search puppetlabs-mysql
+
+puppet module install puppetlabs-mysql 
+
+the above is when you find a perfect match
+
+puppet module upgrade puppetlabs-mysql
+
+puppet module uninstall puppetlabs-mysql
+
+puppet module list (from modules home direc)
+
+pls see the direc structure , give all details 
+
+we can change version in metadata.json
+
+by default puppet applies all the changes from
+
+site.pp files to all the nodes 
+
+i can target by giving 
+
+node '1' , '2', '3'
+
+hiera 
+---
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
