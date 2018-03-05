@@ -8,7 +8,7 @@ rather i can use following by puppet
 user 
 {
   name => 'srikanth',
-  group => 'srikanth',
+  group => 'srikanth'
 
 }
 
@@ -16,7 +16,7 @@ windows
 
 https://downloads.puppetlabs.com/windows/
 
-puppet - windows . 
+
 
 
 
