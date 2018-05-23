@@ -8,7 +8,10 @@ This is an example to show
 
 ## Purpose
 
+As stated above
 
 ## Deployment
+
+It will be day after tomm
 
 ## How to contribute
